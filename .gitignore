@@ -1,0 +1,14 @@
+# Editor files
+.vscode/
+.idea/
+
+# Backup files
+*.backup
+*.bak
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+.temp/
