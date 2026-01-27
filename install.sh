@@ -127,6 +127,12 @@ if version_greater "$LATEST_VERSION" "$INSTALLED_VERSION"; then
         if [ $? -eq 0 ]; then
             notify-send "Discord Updated" "Discord has been updated to $LATEST_VERSION" -i discord 2>/dev/null || true
             echo "Update successful!"
+
+            # Re-apply desktop launcher modification (the .deb package overwrites it)
+            if [ -f /usr/share/applications/discord.desktop ]; then
+                sudo sed -i 's|^Exec=.*|Exec=/usr/local/bin/discord-auto-update|g' /usr/share/applications/discord.desktop
+                echo "Desktop launcher re-configured"
+            fi
         else
             notify-send "Discord Update Failed" "Could not install update" -i discord -u critical 2>/dev/null || true
             echo "Update failed!"
