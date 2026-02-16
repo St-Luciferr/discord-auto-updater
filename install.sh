@@ -118,21 +118,17 @@ if version_greater "$LATEST_VERSION" "$INSTALLED_VERSION"; then
         notify-send "Discord Update" "Installing Discord $LATEST_VERSION..." -i discord 2>/dev/null || true
         
         # Try with pkexec first, fall back to sudo
+        # Include sed command to re-apply desktop launcher modification (the .deb package overwrites it)
         if command -v pkexec &> /dev/null; then
-            pkexec apt install -y "$TEMP_DIR/discord.deb"
+            pkexec bash -c "apt install -y '$TEMP_DIR/discord.deb' && sed -i 's|^Exec=.*|Exec=/usr/local/bin/discord-auto-update|g' /usr/share/applications/discord.desktop"
         else
-            sudo apt install -y "$TEMP_DIR/discord.deb"
+            sudo bash -c "apt install -y '$TEMP_DIR/discord.deb' && sed -i 's|^Exec=.*|Exec=/usr/local/bin/discord-auto-update|g' /usr/share/applications/discord.desktop"
         fi
-        
+
         if [ $? -eq 0 ]; then
             notify-send "Discord Updated" "Discord has been updated to $LATEST_VERSION" -i discord 2>/dev/null || true
             echo "Update successful!"
-
-            # Re-apply desktop launcher modification (the .deb package overwrites it)
-            if [ -f /usr/share/applications/discord.desktop ]; then
-                sudo sed -i 's|^Exec=.*|Exec=/usr/local/bin/discord-auto-update|g' /usr/share/applications/discord.desktop
-                echo "Desktop launcher re-configured"
-            fi
+            echo "Desktop launcher re-configured"
         else
             notify-send "Discord Update Failed" "Could not install update" -i discord -u critical 2>/dev/null || true
             echo "Update failed!"
