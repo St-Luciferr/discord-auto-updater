@@ -158,7 +158,7 @@ if [ -f "$LAST_CHECK_FILE" ]; then
     
     # Only check once per day (86400 seconds)
     if [ $TIME_DIFF -lt 86400 ]; then
-        /usr/share/discord/Discord "$@"
+        /usr/bin/discord "$@"
         exit 0
     fi
 fi
@@ -243,11 +243,11 @@ Then modify `/usr/local/bin/discord-auto-update` to support `--no-launch`:
 
 ```bash
 # At the end of the script, replace:
-/usr/share/discord/Discord "$@"
+/usr/bin/discord "$@"
 
 # With:
 if [ "$1" != "--no-launch" ]; then
-    /usr/share/discord/Discord "$@"
+    /usr/bin/discord "$@"
 fi
 ```
 

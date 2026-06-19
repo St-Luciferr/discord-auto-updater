@@ -38,7 +38,7 @@ cat /usr/local/bin/discord-auto-update
 ### Test update without launching Discord
 ```bash
 # Edit script and comment out the last line:
-# /usr/share/discord/Discord "$@"
+# /usr/bin/discord "$@"
 ```
 
 ### View desktop launcher configuration
@@ -77,7 +77,7 @@ sudo apt install ./discord.deb
 | Desktop launcher | `/usr/share/applications/discord.desktop` |
 | Launcher backup | `/usr/share/applications/discord.desktop.backup` |
 | Sudoers config | `/etc/sudoers.d/discord-auto-update` |
-| Discord binary | `/usr/share/discord/Discord` |
+| Discord launcher | `/usr/bin/discord` |
 
 ## Enable/Disable Features
 
@@ -156,7 +156,7 @@ Name=Discord
 StartupWMClass=discord
 Comment=All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.
 GenericName=Internet Messenger
-Exec=/usr/share/discord/Discord
+Exec=/usr/bin/discord
 Icon=discord
 Type=Application
 Categories=Network;InstantMessaging;

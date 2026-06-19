@@ -57,7 +57,7 @@ main() {
         print_success "Desktop launcher restored"
     else
         print_warning "No backup found. Manually resetting desktop launcher..."
-        sudo sed -i 's|^Exec=.*|Exec=/usr/share/discord/Discord|g' /usr/share/applications/discord.desktop
+        sudo sed -i 's|^Exec=.*|Exec=/usr/bin/discord|g' /usr/share/applications/discord.desktop
         print_success "Desktop launcher reset"
     fi
     

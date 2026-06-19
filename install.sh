@@ -98,7 +98,7 @@ echo "Latest version: $LATEST_VERSION"
 # Check if update is needed
 if [ -z "$LATEST_VERSION" ]; then
     echo "Error: Could not fetch latest version"
-    /usr/share/discord/Discord "$@"
+    /usr/bin/discord "$@"
     exit 0
 fi
 
@@ -141,7 +141,7 @@ else
 fi
 
 # Launch Discord
-/usr/share/discord/Discord "$@"
+/usr/bin/discord "$@"
 EOF
 
     sudo chmod +x /usr/local/bin/discord-auto-update
